@@ -10,7 +10,6 @@ header.masthead {
 
 .card{
   display: inline-flex;
-  justify-content: center;
   padding: 20px;
   margin: 20px;
   background-color: gray;
