@@ -18,11 +18,19 @@
 
 //code to ccreate a starting currency column
 
+const options = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '3fbb304200msh5e3397b75856034p1a036ajsnc0197628f595',
+        'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
+    }
+};
+
 var elements = document.getElementsByClassName('start-currency-dropdown');
 
 Array.from(elements).forEach((element) => {
   element.addEventListener('click', (event) => {
-    alert(`Clicked ${event.target.innerText}!`);
+    // alert(`Clicked ${event.target.innerText}!`);
     $("#starter-column").empty();
     var currency = event.target.innerText;
 console.log(currency);
@@ -38,7 +46,7 @@ var element = document.getElementsByClassName('test');
 
 Array.from(element).forEach((element) => {
     element.addEventListener('click', (event) => {
-      alert(`Clicked ${event.target.innerText}!`);
+    //   alert(`Clicked ${event.target.innerText}!`);
       $("#end-column").empty();
       var currency = event.target.innerText;
   console.log(currency);
@@ -51,9 +59,11 @@ Array.from(element).forEach((element) => {
 
 
 function buildQueryURL(){
-    var queryURL = "https://api.currencybeacon.com/v1/latest?";
-    var queryParams = { "api_key": "pF0NkK7DdZSDlYWoKJJ4Rj09c9hrwO6z" };
-    queryParams.base = $("#start-currency").attr('data-value');
+    var queryURL = "https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert?";
+   var queryParams = {};
+    queryParams.from = $("#start-currency").attr('data-value');
+    queryParams.to = $("#end-currency").attr('data-value');
+    queryParams.amount = $("#currency-amount").val().trim();
     console.log($("#end-column").attr('data-value'))
     console.log("---------------\nURL: " + queryURL + "\n---------------");
     console.log(queryURL + $.param(queryParams));
@@ -63,22 +73,22 @@ function buildQueryURL(){
 
 function convert (currencyData) {
 console.log(currencyData);
-function getValuebyKey (object, key) {
-    return object[key];
-    }
-    ansValue = $("#end-currency").attr('data-value');
-    console.log(ansValue);
-    ans = Number(getValuebyKey(currencyData.rates, ansValue));
-    console.log(ans);
-    console.log($("#currency-amount").val()
-    .trim()
-)
-    var totalAmount = Number($("#currency-amount").val()
-    .trim()
-);
-    console.log(totalAmount);
-    var convertedSum = totalAmount * ans;
-    console.log(convertedSum);
+// function getValuebyKey (object, key) {
+//     return object[key];
+//     }
+//     ansValue = $("#end-currency").attr('data-value');
+//     console.log(ansValue);
+//     ans = Number(getValuebyKey(currencyData.rates, ansValue));
+//     console.log(ans);
+//     console.log($("#currency-amount").val()
+//     .trim()
+// )
+//     var totalAmount = Number($("#currency-amount").val()
+//     .trim()
+// );
+//     console.log(totalAmount);
+    var convertedSum = currencyData.result;
+    console.log(currencyData.result);
     $("#converted-value").append(convertedSum);
 }
 
@@ -92,7 +102,7 @@ $("#run-convert").on("click", function (event) {
     // (in addition to clicks). Prevents the page from reloading on form submit.
     event.preventDefault();
     queryURL = buildQueryURL();
-    fetch(queryURL)
+    fetch(queryURL,options)
     .then(function (response) {
       return response.json()
       .then(convert);
