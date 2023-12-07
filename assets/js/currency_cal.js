@@ -34,7 +34,7 @@ Array.from(elements).forEach((element) => {
     $("#starter-column").empty();
     var currency = event.target.innerText;
 console.log(currency);
-var startCurrency = $("<div id = start-currency data-value = " + currency + ">").text(currency);
+var startCurrency = $("<h3 id = start-currency data-value = " + currency + ">" + "</h3>").text(currency);
 $("#starter-column").append(startCurrency);
 buildQueryURL();
   });  
@@ -50,7 +50,7 @@ Array.from(element).forEach((element) => {
       $("#end-column").empty();
       var currency = event.target.innerText;
   console.log(currency);
-  var endCurrency = $("<div id = end-currency data-value = " + currency + ">").text(currency);
+  var endCurrency = $("<h3 id = end-currency data-value = " + currency + ">" + "</h3>").text(currency);
   $("#end-column").append(endCurrency);
     });  
   });
@@ -88,9 +88,11 @@ console.log(currencyData);
 // );
 //     console.log(totalAmount);
     $("#converted-value").empty();
+    $("#current-rate").empty();
     var convertedSum = currencyData.result;
     console.log(currencyData.result);
-    $("#converted-value").append("Converted Sum = " + convertedSum);
+    $("#converted-value").append("<h3> Converted Sum = " + convertedSum + "</h3>");
+    $('#current-rates').text(currencyData.info.rate);
 }
 
 
