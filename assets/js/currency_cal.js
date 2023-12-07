@@ -87,9 +87,10 @@ console.log(currencyData);
 //     .trim()
 // );
 //     console.log(totalAmount);
+    $("#converted-value").empty();
     var convertedSum = currencyData.result;
     console.log(currencyData.result);
-    $("#converted-value").append(convertedSum);
+    $("#converted-value").append("Converted Sum = " + convertedSum);
 }
 
 
