@@ -5,20 +5,16 @@ header.masthead {
     background-size: cover;
     background-repeat: no-repeat;
     height: 80vh;
-    background-position: center;
+    background-position: centre;
 }
-
-.card{
+.card {
+  background-color: black;
   display: inline-flex;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 25px;
   margin: 20px;
-  background-color: gray;
   color: white;
-  border-style: double;
-  border-radius: 5%;
-  border: 20px;
 }
-
 /* header.masthead {
     background: url();
     position: relative;
@@ -75,3 +71,4 @@ header.masthead .header-content {
   section.download .badges .badge-link img {
     height: 60px;
   } */
+ 
